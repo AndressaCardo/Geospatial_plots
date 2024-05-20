@@ -2,7 +2,8 @@
 """
 Created on Tue May  7 18:15:54 2024
 
-@author: Andressa
+@author: Andressa A. Cardoso
+@email: cardoso.andressa.andrade@gmail.com
 """
 
 import os,sys
