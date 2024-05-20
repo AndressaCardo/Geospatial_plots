@@ -2,7 +2,8 @@
 """
 Created on Wed May  1 12:12:55 2024
 
-@author: Andressa
+@author: Andressa A. Cardoso
+@email: cardoso.andressa.andrade@gmail.com
 """
 
 import matplotlib.pyplot as plt
@@ -33,34 +34,6 @@ lons = np.arange(lon1,lon2,dlon) #criando array #lon ficticia
 nlat = lats.size
 nlon = lons.size
 
-#Definindo uma função onde será aplicado o teste para todo o globo entre dois conjuntos de dados: ds1 e ds2
-def composite_significante(ds1, ds2, equal_var=False):
-    """
-    Calculate composite significance using t test
-    """
-    mean1 = ds1.mean("time") #fazendo a média no tempo para todos os pontos de grade do conjunto ds1
-    std1 = ds1.std("time") #desvio padrão de ds1
-    nobs1 = len(ds1) #extraindo o número de observações da série ds1
-    mean2 = ds2.mean("time") #fazendo a média no tempo para todos os pontos de grade do conjunto ds2
-    std2 = ds2.std("time") #desvio padrão de ds2
-    nobs2 = len(ds2) #extraindo o número de observações da série ds2
-
- #Aplicando a função do teste estatístico utilizando o comando ufunc. 
- #Nesse caso, a função do teste será mapeada sobre todas as variáveis e coordenadas dos arquivos.
-    return xr.apply_ufunc(
-        stats.ttest_ind_from_stats,
-        mean1,
-        std1,
-        nobs1,
-        mean2,
-        std2,
-        nobs2,
-        equal_var,
-        input_core_dims=[[], [], [], [], [], [], []],
-        output_core_dims=[[], []],
-        vectorize=True,
-        dask="parallelized",
-    )
 
 ### atribuindo 
 ### atribuindo 
